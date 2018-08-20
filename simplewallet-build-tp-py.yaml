@@ -17,7 +17,7 @@ version: '2.1'
 
 services:
   simplewallet-processor:
-    container_name: simplewallet-processor
+    container_name: simplewallet-walletprocessor
     build:
       context: .
       dockerfile: ./pyprocessor/Dockerfile

@@ -15,7 +15,7 @@
 # limitations under the License.
 # ------------------------------------------------------------------------------
 
-from processor.simplewallet_tp import main
+from walletprocessor.simplewallet_tp import main
 
 if __name__ == '__main__':
     main()
