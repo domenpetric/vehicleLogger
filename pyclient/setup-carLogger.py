@@ -28,7 +28,7 @@ setup(
     version='1.0',
     description='Sawtooth carLogger Example',
     author='askmish',
-    url='https://github.com/askmish/sawtooth-simplewallet',
+    url='https://github.com/askmish/sawtooth-carLogger',
     packages=find_packages(),
     install_requires=[
         'aiohttp',

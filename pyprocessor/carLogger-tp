@@ -15,7 +15,7 @@
 # limitations under the License.
 # ------------------------------------------------------------------------------
 
-from carLoggerProcessor.simplewallet_tp import main
+from carLoggerProcessor.carLogger_tp import main
 
 if __name__ == '__main__':
     main()

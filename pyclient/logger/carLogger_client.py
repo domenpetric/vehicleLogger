@@ -1,19 +1,5 @@
-# Copyright 2018 Intel Corporation
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ------------------------------------------------------------------------------
 '''
-This SimpleWalletClient class interfaces with Sawtooth through the REST API.
+This CarLoggerClient class interfaces with Sawtooth through the REST API.
 '''
 
 import hashlib
@@ -40,13 +26,13 @@ def _hash(data):
     return hashlib.sha512(data).hexdigest()
 
 
-class SimpleWalletClient(object):
-    '''Client simple wallet class.
+class CarLoggerClient(object):
+    '''Client car logger class.
 
-    This supports deposit, withdraw, transfer, and balance functions.
+    This supports create, add, delete, history functions.
     '''
 
-    def __init__(self, baseUrl, keyFile=None):
+    def __init__(self, baseUrl, private_key=None, vin=''):
         '''Initialize the client class.
 
            This is mainly getting the key pair and computing the address.
@@ -54,19 +40,8 @@ class SimpleWalletClient(object):
 
         self._baseUrl = baseUrl
 
-        if keyFile is None:
-            self._signer = None
-            return
-
         try:
-            with open(keyFile) as fd:
-                privateKeyStr = fd.read().strip()
-        except OSError as err:
-            raise Exception('Failed to read private key {}: {}'.format(
-                keyFile, str(err)))
-
-        try:
-            privateKey = Secp256k1PrivateKey.from_hex(privateKeyStr)
+            privateKey = Secp256k1PrivateKey.from_hex(private_key)
         except ParseError as err:
             raise Exception('Failed to load private key: {}'.format(str(err)))
 
@@ -74,57 +49,34 @@ class SimpleWalletClient(object):
             .new_signer(privateKey)
 
         self._publicKey = self._signer.get_public_key().as_hex()
-
+        self.VIN = vin
         self._address = _hash(FAMILY_NAME.encode('utf-8'))[0:6] + \
-            _hash(self._publicKey.encode('utf-8'))[0:64]
+            _hash(self.VIN.encode('utf-8'))[0:64]
 
     # For each valid cli command in _cli.py file,
     # add methods to:
     # 1. Do any additional handling, if required
     # 2. Create a transaction and a batch
     # 2. Send to rest-api
-    def deposit(self, value):
-        return self._wrap_and_send(
-            "deposit",
-            value)
 
-    def withdraw(self, value):
-        try:
-            retValue = self._wrap_and_send(
-                "withdraw",
-                value)
-        except Exception:
-            raise Exception('Encountered an error during withdrawal')
-        return retValue
+    def create(self, value):
+        return self._wrap_and_send("create", value)
 
-    def transfer(self, value, clientToKey):
-        try:
-            with open(clientToKey) as fd:
-                publicKeyStr = fd.read().strip()
-            retValue = self._wrap_and_send(
-                "transfer",
-                value,
-                publicKeyStr)
-        except OSError as err:
-            raise Exception('Failed to read public key {}: {}'.format(
-                clientToKey, str(err)))
-        except Exception as err:
-            raise Exception('Encountered an error during transfer', err)
-        return retValue
+    def add(self, value):
+        return self._wrap_and_send("add", value)
 
-    def balance(self):
-        result = self._send_to_restapi(
-            "state/{}".format(self._address))
+    def delete(self, value):
+        return self._wrap_and_send("delete", value)
+
+    def history(self):
+        result = self._send_to_restapi("state/{}".format(self._address))
         try:
             return base64.b64decode(yaml.safe_load(result)["data"])
 
         except BaseException:
             return None
 
-    def _send_to_restapi(self,
-                         suffix,
-                         data=None,
-                         contentType=None):
+    def _send_to_restapi(self, suffix, data=None, contentType=None):
         '''Send a REST command to the Validator via the REST API.'''
 
         if self._baseUrl.startswith("http://"):
@@ -156,9 +108,7 @@ class SimpleWalletClient(object):
 
         return result.text
 
-    def _wrap_and_send(self,
-                       action,
-                       *values):
+    def _wrap_and_send(self, action, *values):
         '''Create a transaction, then wrap it in a batch.     
                                                               
            Even single transactions must be wrapped into a batch.
@@ -175,13 +125,6 @@ class SimpleWalletClient(object):
         # Construct the address where we'll store our state
         address = self._address
         inputAddressList = [address]
-        outputAddressList = [address]
-
-        if "transfer" == action:
-            toAddress = _hash(FAMILY_NAME.encode('utf-8'))[0:6] + \
-            _hash(values[1].encode('utf-8'))[0:64]
-            inputAddressList.append(toAddress)
-            outputAddressList.append(toAddress)
 
         # Create a TransactionHeader
         header = TransactionHeader(
@@ -189,7 +132,6 @@ class SimpleWalletClient(object):
             family_name=FAMILY_NAME,
             family_version="1.0",
             inputs=inputAddressList,
-            outputs=outputAddressList,
             dependencies=[],
             payload_sha512=_hash(payload),
             batcher_public_key=self._publicKey,
