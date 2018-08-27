@@ -2,33 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c10299c-927c-453b-9f8b-7ef8c25448d3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/carLogger_tp.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/Dockerfile-carLogger" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/Dockerfile-carLogger" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_cli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_client.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/setup-carLogger.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/setup-carLogger.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/setup.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/simplewallet" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/tests/test_tp_simplewallet.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/simplewallet_cli.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/simplewallet_client.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/simplewallet_message_factory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/Dockerfile-carLogger" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/Dockerfile-carLogger" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLogger-tp" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLogger-tp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/simplewallet_tp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/simplewallet-tp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/walletprocessor/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/walletprocessor/carLogger_tp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/simplewallet-build-tp-py.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/venv/Scripts/python.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/venv/Scripts/python.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/venv/Scripts/pythonw.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/venv/Scripts/pythonw.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sawtooth-carLogger/venv/tcl/tk8.5/demos/images/earth.gif" beforeDir="false" afterPath="$PROJECT_DIR$/../sawtooth-carLogger/venv/tcl/tk8.5/demos/images/earth.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyclient/logger/carLogger_cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyclient/logger/carLogger_cli.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyclient/logger/carLogger_client.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyclient/logger/carLogger_client.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyprocessor/carLoggerProcessor/carLogger_tp.py" beforeDir="false" afterPath="$PROJECT_DIR$/pyprocessor/carLoggerProcessor/carLogger_tp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/python.exe" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/python.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/Scripts/pythonw.exe" beforeDir="false" afterPath="$PROJECT_DIR$/venv/Scripts/pythonw.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv/tcl/tk8.5/demos/images/earth.gif" beforeDir="false" afterPath="$PROJECT_DIR$/venv/tcl/tk8.5/demos/images/earth.gif" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,7 +20,7 @@
     <session id="1071218515">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="2" />
@@ -82,7 +62,7 @@
           <entry key="Dockerfile-carLogger" value="78" />
           <entry key="carLogger" value="15" />
           <entry key="carLogger-tp" value="23" />
-          <entry key="py" value="2231" />
+          <entry key="py" value="2587" />
           <entry key="simplewallet-tp" value="6" />
           <entry key="yaml" value="71" />
         </counts>
@@ -90,8 +70,43 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Dockerfile" value="92" />
-          <entry key="Python" value="2275" />
+          <entry key="Python" value="2631" />
           <entry key="YAML" value="71" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-2090479783">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="carLogger" value="1" />
+          <entry key="carLogger-tp" value="1" />
+          <entry key="py" value="12" />
+          <entry key="simplewallet-tp" value="1" />
+          <entry key="yaml" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="15" />
+          <entry key="YAML" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="235" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="235" />
         </counts>
       </usages-collector>
     </session>
@@ -99,56 +114,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_cli.py">
+        <entry file="file://$PROJECT_DIR$/pyclient/logger/carLogger_cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="31" column="28" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_client.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" selection-start-line="10" selection-end-line="13" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/carLogger_tp.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/LICENSE">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/.gitattributes">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/Dockerfile-carLogger">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+            <state relative-caret-position="-2331">
+              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+              <folding>
+                <element signature="e#824#839#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/setup-carLogger.py">
+        <entry file="file://$PROJECT_DIR$/pyclient/logger/carLogger_client.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+            <state relative-caret-position="494">
+              <caret line="80" column="12" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
+              <folding>
+                <element signature="e#83#97#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pyprocessor/carLoggerProcessor/carLogger_tp.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1">
+              <caret line="129" column="49" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="49" />
+              <folding>
+                <element signature="e#50#64#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,26 +162,32 @@
     <findStrings>
       <find>project</find>
       <find>add_deposit_parser</find>
-      <find>apply</find>
       <find>si</find>
       <find>deposit</find>
       <find>simple</find>
       <find>wall</find>
       <find>spli</find>
       <find>keyFile</find>
-      <find>_address</find>
-      <find>_get_keyfile</find>
-      <find>_get_pubkeyfile</find>
       <find>_get_wallet_address</find>
       <find>public</find>
       <find>getPublicKey</find>
       <find>creat</find>
       <find>create</find>
       <find>do</find>
+      <find>apply</find>
+      <find>_get_pubkeyfile</find>
+      <find>_get_keyfile</find>
+      <find>BaseException</find>
+      <find>traceback</find>
+      <find>does not exist yet</find>
+      <find>log</find>
+      <find>prin</find>
+      <find>_delete</find>
+      <find>_address</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../sawtooth-carLogger" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -204,14 +206,18 @@
         <option value="$PROJECT_DIR$/pyclient/setup-carLogger.py" />
         <option value="$PROJECT_DIR$/carLogger-build-tp-py.yaml" />
         <option value="$PROJECT_DIR$/pyprocessor/carLoggerProcessor/__init__.py" />
-        <option value="$PROJECT_DIR$/pyclient/logger/carLogger_client.py" />
-        <option value="$PROJECT_DIR$/pyclient/logger/carLogger_cli.py" />
         <option value="$PROJECT_DIR$/pyprocessor/carLogger-tp" />
         <option value="$PROJECT_DIR$/pyprocessor/Dockerfile" />
         <option value="$PROJECT_DIR$/pyprocessor/Dockerfile-carLogger" />
+        <option value="$PROJECT_DIR$/carLogger-build-tp-py.yaml" />
+        <option value="$PROJECT_DIR$/pyclient/Dockerfile-carLogger" />
+        <option value="$PROJECT_DIR$/../sawtooth-simplewallet/pyprocessor/processor/simplewallet_tp.py" />
+        <option value="$PROJECT_DIR$/pyclient/logger/carLogger_cli.py" />
+        <option value="$PROJECT_DIR$/pyclient/logger/carLogger_cli.py" />
         <option value="$PROJECT_DIR$/pyprocessor/carLoggerProcessor/carLogger_tp.py" />
-        <option value="$PROJECT_DIR$/../sawtooth-carLogger/carLogger-build-tp-py.yaml" />
-        <option value="$PROJECT_DIR$/../sawtooth-carLogger/pyclient/Dockerfile-carLogger" />
+        <option value="$PROJECT_DIR$/pyprocessor/carLoggerProcessor/carLogger_tp.py" />
+        <option value="$PROJECT_DIR$/pyclient/logger/carLogger_client.py" />
+        <option value="$PROJECT_DIR$/pyclient/logger/carLogger_client.py" />
       </list>
     </option>
   </component>
@@ -222,7 +228,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="231" />
+    <option name="x" value="730" />
     <option name="y" value="-8" />
     <option name="width" value="875" />
     <option name="height" value="994" />
@@ -233,34 +239,46 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="sawtooth-simplewallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sawtooth-carLogger" type="b2602c69:ProjectViewProjectNode" />
               <item name="sawtooth-carLogger" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="sawtooth-simplewallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sawtooth-carLogger" type="b2602c69:ProjectViewProjectNode" />
               <item name="sawtooth-carLogger" type="462c0819:PsiDirectoryNode" />
               <item name="pyclient" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="sawtooth-simplewallet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sawtooth-carLogger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sawtooth-carLogger" type="462c0819:PsiDirectoryNode" />
+              <item name="pyclient" type="462c0819:PsiDirectoryNode" />
+              <item name="logger" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sawtooth-carLogger" type="b2602c69:ProjectViewProjectNode" />
               <item name="sawtooth-carLogger" type="462c0819:PsiDirectoryNode" />
               <item name="pyprocessor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="sawtooth-carLogger" type="b2602c69:ProjectViewProjectNode" />
+              <item name="sawtooth-carLogger" type="462c0819:PsiDirectoryNode" />
+              <item name="pyprocessor" type="462c0819:PsiDirectoryNode" />
+              <item name="carLoggerProcessor" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../sawtooth-carLogger" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
@@ -306,7 +324,7 @@
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.116204694" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.120469086" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -366,58 +384,21 @@
     </ignored-roots>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/simplewallet_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/walletprocessor/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="21" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pyclient/wallet/simplewallet_client.py" />
+    <entry file="file://$PROJECT_DIR$/pyclient/wallet/__init__.py" />
+    <entry file="file://$PROJECT_DIR$/pyprocessor/walletprocessor/__init__.py" />
     <entry file="file://$PROJECT_DIR$/pyprocessor/__init__.py" />
     <entry file="file://$PROJECT_DIR$/pyclient/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/carLogger">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/walletprocessor/simplewallet_tp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="28" selection-end-line="26" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/simplewallet-build-tp-py.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/__init__.py">
+    <entry file="file://$PROJECT_DIR$/pyprocessor/walletprocessor/simplewallet_tp.py" />
+    <entry file="file://$PROJECT_DIR$/simplewallet-build-tp-py.yaml" />
+    <entry file="file://$PROJECT_DIR$/pyclient/logger/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/__init__.py">
+    <entry file="file://$PROJECT_DIR$/pyprocessor/carLoggerProcessor/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
@@ -431,13 +412,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_message_factory.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Python32/Lib/argparse.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
@@ -445,123 +419,129 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/wallet/simplewallet_cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="183" column="44" selection-start-line="183" selection-start-column="32" selection-end-line="183" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/nose2.cfg">
+    <entry file="file://$PROJECT_DIR$/pyclient/wallet/simplewallet_cli.py" />
+    <entry file="file://$PROJECT_DIR$/pyclient/nose2.cfg">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/simplewallet">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/simplewallet-tp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLogger-tp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="28" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/logger/carLogger_client.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="13" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="983">
-          <caret line="79" column="37" selection-start-line="79" selection-start-column="32" selection-end-line="79" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/carLogger-build-tp-py.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="691">
-          <caret line="66" column="37" lean-forward="true" selection-start-line="66" selection-start-column="37" selection-end-line="66" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/Dockerfile-carLogger">
+    <entry file="file://$PROJECT_DIR$/pyclient/simplewallet" />
+    <entry file="file://$PROJECT_DIR$/pyprocessor/simplewallet-tp" />
+    <entry file="file://$PROJECT_DIR$/pyclient/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/pyclient/Dockerfile-carLogger">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="52" column="22" lean-forward="true" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="-646">
-            <caret line="22" selection-start-line="22" selection-end-line="22" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/carLoggerProcessor/carLogger_tp.py">
+    <entry file="file://$PROJECT_DIR$/README.md" />
+    <entry file="file://$PROJECT_DIR$/pyprocessor/Dockerfile" />
+    <entry file="file://$PROJECT_DIR$/pyclient/setup.py" />
+    <entry file="file://$PROJECT_DIR$/pyclient/tests/test_tp_simplewallet.py" />
+    <entry file="file://$PROJECT_DIR$/carLogger-build-tp-py.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        <state relative-caret-position="527">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/LICENSE">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/.gitattributes">
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/Dockerfile">
+    <entry file="file://$PROJECT_DIR$/pyprocessor/Dockerfile-carLogger">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="10" selection-start-line="26" selection-start-column="10" selection-end-line="26" selection-end-column="10" />
+        <state relative-caret-position="459">
+          <caret line="27" column="19" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyprocessor/Dockerfile-carLogger">
+    <entry file="file://$PROJECT_DIR$/pyclient/carLogger">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/setup.py">
+    <entry file="file://$PROJECT_DIR$/pyclient/setup-carLogger.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="15" column="30" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+        <state relative-caret-position="340">
+          <caret line="23" column="15" selection-start-line="23" selection-start-column="15" selection-end-line="23" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/tests/test_tp_simplewallet.py">
+    <entry file="file://$PROJECT_DIR$/pyclient/logger/carLogger_message_factory.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+        <state relative-caret-position="340">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../sawtooth-carLogger/pyclient/setup-carLogger.py">
+    <entry file="file://$PROJECT_DIR$/../sawtooth-simplewallet/pyprocessor/simplewallet-tp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyprocessor/carLogger-tp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="3" lean-forward="true" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        <state relative-caret-position="357">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sawtooth-simplewallet/pyprocessor/processor/simplewallet_tp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="93" column="57" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="57" />
+          <folding>
+            <element signature="e#677#691#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sawtooth-simplewallet/pyclient/wallet/simplewallet_cli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="331">
+          <caret line="167" column="4" selection-start-line="167" selection-start-column="4" selection-end-line="167" selection-end-column="4" />
+          <folding>
+            <element signature="e#830#845#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../sawtooth-simplewallet/pyclient/wallet/simplewallet_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="65" column="35" lean-forward="true" selection-start-line="56" selection-start-column="8" selection-end-line="65" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyprocessor/carLoggerProcessor/carLogger_tp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1">
+          <caret line="129" column="49" selection-start-line="129" selection-start-column="30" selection-end-line="129" selection-end-column="49" />
+          <folding>
+            <element signature="e#50#64#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyclient/logger/carLogger_cli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2331">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+          <folding>
+            <element signature="e#824#839#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyclient/logger/carLogger_client.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="80" column="12" lean-forward="true" selection-start-line="80" selection-start-column="12" selection-end-line="80" selection-end-column="12" />
+          <folding>
+            <element signature="e#83#97#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

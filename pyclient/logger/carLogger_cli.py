@@ -81,6 +81,22 @@ def add_create_parser(subparsers, parent_parser):
         type=str,
         help='date of the work')
 
+    parser.add_argument(
+        'brand',
+        type=str,
+        help='brand of the new car')
+
+    parser.add_argument(
+        'model',
+        type=str,
+        help='model of the new car')
+
+    parser.add_argument(
+        'description',
+        default='',
+        type=str,
+        help='any text you want or empty string')
+
 def add_add_parser(subparsers, parent_parser):
     '''Define the "add" command line parsing.'''
     parser = subparsers.add_parser(
@@ -113,6 +129,11 @@ def add_add_parser(subparsers, parent_parser):
         type=int,
         help='number of kilometers on vehicle counter on day pf work')
 
+    parser.add_argument(
+        'description',
+        type=str,
+        help='any text you want or empty string')
+
 def add_delete_parser(subparsers, parent_parser):
     '''Define the "delete" command line parsing.'''
     parser = subparsers.add_parser(
@@ -144,6 +165,11 @@ def add_delete_parser(subparsers, parent_parser):
         'km_status',
         type=int,
         help='number of kilometers on vehicle counter on day pf work')
+
+    parser.add_argument(
+        'description',
+        type=str,
+        help='any text you want or empty string')
 
 def add_history_parser(subparsers, parent_parser):
     '''Define the "history" command line parsing.'''
@@ -197,42 +223,52 @@ def create_parser(prog_name):
 
 def do_create(args):
     '''Implements the "create" subcommand by calling the client class.'''
-    keyfile = args.private_key
+    keyfile = _get_keyfile('janus')
+    print("Private key: {}".format(keyfile))
+    #keyfile = args.private_key
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.create(VIN + ','+keyfile+','+args.work_date)
-
+    response = client.create(VIN, keyfile, args.work_date, args.brand , args.model,  args.description)
     print("Response: {}".format(response))
 
 def do_add(args):
     '''Implements the "add" subcommand by calling the client class.'''
-    keyfile = args.private_key
+    #keyfile = args.private_key
+    keyfile = _get_keyfile('jack')
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.withdraw(args.value)
+    response = client.add(VIN , keyfile , args.work_date , args.work , args.km_status , args.description)
 
     print("Response: {}".format(response))
 
 def do_delete(args):
     '''Implements the "add" subcommand by calling the client class.'''
-    keyfile = args.private_key
+    #keyfile = args.private_key
+    keyfile = _get_keyfile('jack')
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.withdraw(args.value)
+    response = client.delete(VIN , keyfile , args.work_date , args.work , args.km_status , args.description)
 
     print("Response: {}".format(response))
 
 def do_history(args):
     '''Implements the "balance" subcommand by calling the client class.'''
+    keyfile = _get_keyfile('jack')
     VIN = args.VIN
-    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=None, vin=VIN)
+    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
     data = client.history()
 
     if data is not None:
-        print("\nHistory of vehicle with VIN: {} has history = {}\n".format(args.customerName, data.decode()))
+        print("\nHistory of vehicle with VIN: {} has history = {}\n".format(VIN, data.decode()))
     else:
         raise Exception("Data not found: {}".format(args.VIN))
 
+def _get_keyfile(customerName):
+    '''Get the private key for a customer.'''
+    home = os.path.expanduser("~")
+    key_dir = os.path.join(home, ".sawtooth", "keys")
+
+    return '{}/{}.priv'.format(key_dir, customerName)
 
 def main(prog_name=os.path.basename(sys.argv[0]), args=None):
     '''Entry point function for the client CLI.'''
@@ -242,7 +278,6 @@ def main(prog_name=os.path.basename(sys.argv[0]), args=None):
     args = parser.parse_args(args)
 
     verbose_level = 0
-
     setup_loggers(verbose_level=verbose_level)
 
     # Get the commands from cli args and call corresponding handlers

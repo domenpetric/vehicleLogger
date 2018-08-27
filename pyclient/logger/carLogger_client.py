@@ -39,9 +39,17 @@ class CarLoggerClient(object):
         '''
 
         self._baseUrl = baseUrl
+        if private_key is None:
+            self._signer = None
+            return
 
         try:
-            privateKey = Secp256k1PrivateKey.from_hex(private_key)
+            with open(private_key) as fd:
+                privateKeyStr = fd.read().strip()
+        except OSError as err:
+            raise Exception('Failed to read private key {}: {}'.format(private_key, str(err)))
+        try:
+            privateKey = Secp256k1PrivateKey.from_hex(privateKeyStr)
         except ParseError as err:
             raise Exception('Failed to load private key: {}'.format(str(err)))
 
@@ -59,14 +67,14 @@ class CarLoggerClient(object):
     # 2. Create a transaction and a batch
     # 2. Send to rest-api
 
-    def create(self, value):
-        return self._wrap_and_send("create", value)
+    def create(self, VIN, keyfile, work_date, brand , model, description):
+        return self._wrap_and_send("create", VIN, keyfile, work_date, brand , model, description)
 
-    def add(self, value):
-        return self._wrap_and_send("add", value)
+    def add(self, VIN , keyfile , work_date , work , km_status , description):
+        return self._wrap_and_send("add", VIN , keyfile , work_date , work , km_status , description)
 
-    def delete(self, value):
-        return self._wrap_and_send("delete", value)
+    def delete(self,  VIN , keyfile , work_date , work , km_status , description):
+        return self._wrap_and_send("delete", VIN , keyfile , work_date , work , km_status , description)
 
     def history(self):
         result = self._send_to_restapi("state/{}".format(self._address))
@@ -109,10 +117,9 @@ class CarLoggerClient(object):
         return result.text
 
     def _wrap_and_send(self, action, *values):
-        '''Create a transaction, then wrap it in a batch.     
-                                                              
+        '''Create a transaction, then wrap it in a batch.
            Even single transactions must be wrapped into a batch.
-        ''' 
+        '''
 
         # Generate a csv utf-8 encoded string as payload
         rawPayload = action
@@ -125,6 +132,7 @@ class CarLoggerClient(object):
         # Construct the address where we'll store our state
         address = self._address
         inputAddressList = [address]
+        outputAddressList = [address]
 
         # Create a TransactionHeader
         header = TransactionHeader(
@@ -132,6 +140,7 @@ class CarLoggerClient(object):
             family_name=FAMILY_NAME,
             family_version="1.0",
             inputs=inputAddressList,
+            outputs=outputAddressList,
             dependencies=[],
             payload_sha512=_hash(payload),
             batcher_public_key=self._publicKey,
@@ -153,18 +162,14 @@ class CarLoggerClient(object):
             transaction_ids=[txn.header_signature for txn in transactionList]
         ).SerializeToString()
 
-        #Create Batch using the BatchHeader and transactionList above
+        # Create Batch using the BatchHeader and transactionList above
         batch = Batch(
             header=header,
             transactions=transactionList,
             header_signature=self._signer.sign(header))
 
-        #Create a Batch List from Batch above
+        # Create a Batch List from Batch above
         batch_list = BatchList(batches=[batch])
 
         # Send batch_list to rest-api
-        return self._send_to_restapi(
-            "batches",
-            batch_list.SerializeToString(),
-            'application/octet-stream')
-
+        return self._send_to_restapi("batches", batch_list.SerializeToString(), 'application/octet-stream')

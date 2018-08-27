@@ -5,10 +5,12 @@ Transaction family class for carLogger.
 
 import hashlib
 import logging
+import time
 
 from sawtooth_signing import create_context
 
 from sawtooth_sdk.processor.handler import TransactionHandler
+from sawtooth_sdk.processor.exceptions import InvalidTransaction
 from sawtooth_sdk.processor.exceptions import InternalError
 from sawtooth_sdk.processor.core import TransactionProcessor
 
@@ -62,42 +64,45 @@ class CarLoggerTransactionHandler(TransactionHandler):
         private_key = payload_list[2]
 
         # Get the public key sent from the client.
-        company = header.signer_public_key
+        from_key = header.signer_public_key
+        company = from_key
 
         # Perform the operation.
         LOGGER.info("Operation = "+ operation)
-
-        if getPublicKey(private_key) != company:
-            raise InternalError("Private and public key do not match")
         if operation == "add":
-
             work_date = payload_list[3]
             work = payload_list[4]
             km_status = payload_list[5]
-
-            self._add(context, VIN, company, work_date,work,km_status)
+            description = payload_list[6]
+            self._add(context, VIN, company, work_date,work,km_status,description)
         elif operation == "delete":
             work_date = payload_list[3]
             work = payload_list[4]
             km_status = payload_list[5]
             deleted_work=''
+            description = payload_list[6]
             for number in work.split("|"):
                 deleted_work = deleted_work + str(-1*int(number))
             work = deleted_work
-            self._delete(context, VIN, company, work_date, work, km_status)
+            self._delete(context, VIN, company, work_date, work, km_status,description)
         elif operation == "create":
             work_date = payload_list[3]
-            self._create(context, VIN, company, work_date)
+            brand = payload_list[4]
+            model = payload_list[5]
+            description = payload_list[6]
+            self._create(context, VIN, company, work_date, brand, model,description)
         else:
             LOGGER.info("Unhandled action. Operation should be add, delete, create or history")
 
-    def _add(self, context, VIN, company, work_date,work,km_status):
+    def _add(self, context, VIN, company, work_date,work,km_status, description):
         wallet_address = self._get_wallet_address(VIN)
+        # wallet_address = self._get_wallet_address(company)
         LOGGER.info('Got the serial number {} and the wallet address {} '.format(VIN, wallet_address))
         current_entry = context.get_state([wallet_address])
-        new_entry = VIN + ';' + company + ';' + work_date + ';' + work + ';' + str(km_status)
+        timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
+        new_entry = VIN + ';' + company + ';' + work_date + ';' + work + ';' + str(km_status) + ';' + description + ';' + timestamp
         LOGGER.info('Current entry{}'.format(current_entry))
-        if current_entry != []:
+        if current_entry == []:
             LOGGER.info('Serial number {} does not exist yet'.format(VIN))
         else:
             state_data = str(new_entry).encode('utf-8')
@@ -105,13 +110,15 @@ class CarLoggerTransactionHandler(TransactionHandler):
             if len(addresses) < 1:
                 raise InternalError("State Error")
 
-    def _delete(self, context, VIN, company, work_date,work,km_status):
+    def _delete(self, context, VIN, company, work_date,work,km_status,description):
         wallet_address = self._get_wallet_address(VIN)
+        # wallet_address = self._get_wallet_address(company)
         LOGGER.info('Got the serial number {} and the wallet address {} '.format(VIN, wallet_address))
         current_entry = context.get_state([wallet_address])
-        new_entry = VIN + ';' + company + ';' + work_date + ';' + work + ';' + str(km_status)
+        timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
+        new_entry = VIN + ';' + company + ';' + work_date + ';' + work + ';' + str(km_status) + ';' + description + ';' + timestamp
         LOGGER.info('Current entry{}'.format(current_entry))
-        if current_entry != []:
+        if current_entry == []:
             LOGGER.info('Serial number {} does not exist yet'.format(VIN))
         else:
             state_data = str(new_entry).encode('utf-8')
@@ -119,19 +126,23 @@ class CarLoggerTransactionHandler(TransactionHandler):
             if len(addresses) < 1:
                 raise InternalError("State Error")
 
-    def _create(self, context, VIN, company, work_date):
+    def _create(self, context, VIN, company, work_date, brand, model,description):
         wallet_address = self._get_wallet_address(VIN)
+        # wallet_address = self._get_wallet_address(company)
         LOGGER.info('Got the serial number {} and the wallet address {} '.format(VIN, wallet_address))
-        current_entry = context.get_state([wallet_address])
-        new_entry = VIN + ';' + company+';' + work_date + ';0;0'
-        LOGGER.info('Current entry{}'.format(current_entry))
-        if current_entry != []:
-            LOGGER.info('Serial number {} already in use. Try to add data or get different serial number'.format(VIN))
-        else:
-            state_data = str(new_entry).encode('utf-8')
-            addresses = context.set_state({wallet_address: state_data})
-            if len(addresses) < 1:
-                raise InternalError("State Error")
+        # current_entry = context.get_state([wallet_address])
+        timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
+        new_entry = VIN + ';' + company+';' + work_date + ';0;0;' + brand + ';' + model + ';' + description + ';' + timestamp
+        # LOGGER.info('Current entry{}'.format(current_entry))
+        # if current_entry != []:
+        #     LOGGER.info('Serial number {} already in use. Try to add data or get different serial number'.format(VIN))
+        #     raise InternalError('Serial number {} already in use. Try to add data or get different serial number'.format(VIN))
+        #else:
+        state_data = str(new_entry).encode('utf-8')
+        addresses = context.set_state({wallet_address: state_data})
+        if len(addresses) < 1:
+            raise InternalError("State Error")
+
 
     def _get_wallet_address(self, from_key):
         return _hash(FAMILY_NAME.encode('utf-8'))[0:6] + _hash(from_key.encode('utf-8'))[0:64]
@@ -165,4 +176,3 @@ def main():
     except BaseException as err:
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
-
