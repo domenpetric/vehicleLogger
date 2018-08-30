@@ -17,7 +17,8 @@ from sawtooth_sdk.processor.handler import TransactionHandler
 from sawtooth_sdk.processor.exceptions import InvalidTransaction
 from sawtooth_sdk.processor.exceptions import InternalError
 from sawtooth_sdk.processor.core import TransactionProcessor
-
+from sawtooth_signing.secp256k1 import Secp256k1PrivateKey
+from sawtooth_signing import CryptoFactory
 
 LOGGER = logging.getLogger(__name__)
 
@@ -78,10 +79,10 @@ class CarLoggerTransactionHandler(TransactionHandler):
         payload_list = transaction.payload.decode().split(",")
         operation = payload_list[0]
         VIN = payload_list[1]
-        private_key = payload_list[2]
+        signer = CryptoFactory(create_context('secp256k1')) \
+            .new_signer(Secp256k1PrivateKey.from_hex(payload_list[2]))
         work_date = payload_list[3]
-        company = self.getPublicKey(private_key)
-        LOGGER.info("create lo  " )
+        company = signer.get_public_key().as_hex()
         log = VehicleLog(VIN=VIN, worker=company, work_date=work_date)
         # Perform the operation.
         LOGGER.info("Operation = "+ operation)

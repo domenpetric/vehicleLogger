@@ -74,7 +74,7 @@ def add_create_parser(subparsers, parent_parser):
     parser.add_argument(
         'private_key',
         type=str,
-        help='ypur private key')
+        help='your private key')
 
     parser.add_argument(
         'work_date',
@@ -112,7 +112,7 @@ def add_add_parser(subparsers, parent_parser):
     parser.add_argument(
         'private_key',
         type=str,
-        help='ypur private key')
+        help='your private key')
 
     parser.add_argument(
         'work_date',
@@ -149,7 +149,7 @@ def add_delete_parser(subparsers, parent_parser):
     parser.add_argument(
         'private_key',
         type=str,
-        help='ypur private key')
+        help='your private key')
 
     parser.add_argument(
         'work_date',
@@ -223,20 +223,17 @@ def create_parser(prog_name):
 
 def do_create(args):
     '''Implements the "create" subcommand by calling the client class.'''
-    keyfile = _get_keyfile('jack')
-    print("Private key: {}".format(keyfile))
     company = args.private_key
     VIN = args.VIN
-    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
+    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=company, vin=VIN)
     response = client.create(VIN, company, args.work_date, args.brand , args.model,  args.description)
     print("Response: {}".format(response))
 
 def do_add(args):
     '''Implements the "add" subcommand by calling the client class.'''
     company = args.private_key
-    keyfile = _get_keyfile('jack')
     VIN = args.VIN
-    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
+    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=company, vin=VIN)
     response = client.add(VIN , company , args.work_date , args.work , args.km_status , args.description)
 
     print("Response: {}".format(response))
@@ -244,16 +241,15 @@ def do_add(args):
 def do_delete(args):
     '''Implements the "add" subcommand by calling the client class.'''
     company = args.private_key
-    keyfile = _get_keyfile('jack')
     VIN = args.VIN
-    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.delete(VIN , company , args.work_date , args.work , args.km_status , args.description)
+    client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=company, vin=VIN)
+    response = client.delete(VIN, company, args.work_date, args.work, args.km_status, args.description)
 
     print("Response: {}".format(response))
 
 def do_history(args):
     '''Implements the "balance" subcommand by calling the client class.'''
-    keyfile = _get_keyfile('jack')
+    keyfile = '5b00c8e6e4c0a8507e14d14c8618ad7a22de4920550b69debc43c8b5bb2271c0'
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
     data = client.history()

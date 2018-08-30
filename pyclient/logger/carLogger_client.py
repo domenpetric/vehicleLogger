@@ -39,17 +39,9 @@ class CarLoggerClient(object):
         '''
 
         self._baseUrl = baseUrl
-        if private_key is None:
-            self._signer = None
-            return
 
         try:
-            with open(private_key) as fd:
-                privateKeyStr = fd.read().strip()
-        except OSError as err:
-            raise Exception('Failed to read private key {}: {}'.format(private_key, str(err)))
-        try:
-            privateKey = Secp256k1PrivateKey.from_hex(privateKeyStr)
+            privateKey = Secp256k1PrivateKey.from_hex(private_key)
         except ParseError as err:
             raise Exception('Failed to load private key: {}'.format(str(err)))
 
