@@ -33,7 +33,7 @@ from logger.carLogger_client import CarLoggerClient
 
 DISTRIBUTION_NAME = 'carLogger'
 
-DEFAULT_URL = 'http://rest-api:8008'
+DEFAULT_URL = 'http://sawtooth-rest-api-1:8008'
 
 def create_console_handler(verbose_level):
     clog = logging.StreamHandler()
@@ -223,7 +223,7 @@ def create_parser(prog_name):
 
 def do_create(args):
     '''Implements the "create" subcommand by calling the client class.'''
-    keyfile = _get_keyfile('janus')
+    keyfile = _get_keyfile('jack')
     print("Private key: {}".format(keyfile))
     #keyfile = args.private_key
     VIN = args.VIN

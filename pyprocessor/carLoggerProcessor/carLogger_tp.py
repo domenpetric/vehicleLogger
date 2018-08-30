@@ -6,6 +6,9 @@ Transaction family class for carLogger.
 import hashlib
 import logging
 import time
+import sys
+import argparse
+import pkg_resources
 
 from sawtooth_signing import create_context
 
@@ -147,21 +150,55 @@ class CarLoggerTransactionHandler(TransactionHandler):
     def _get_wallet_address(self, from_key):
         return _hash(FAMILY_NAME.encode('utf-8'))[0:6] + _hash(from_key.encode('utf-8'))[0:64]
 
+
     def getPublicKey(self, from_key):
         context = create_context('secp256k1')
         public_key = context.get_public_key(from_key)
         return public_key
 
+
 def setup_loggers():
     logging.basicConfig()
     logging.getLogger().setLevel(logging.DEBUG)
 
-def main():
+
+def parse_args(args):
+    parser = argparse.ArgumentParser(
+        formatter_class=argparse.RawTextHelpFormatter)
+
+    parser.add_argument(
+        '-C', '--connect',
+        help='Endpoint for the validator connection')
+
+    parser.add_argument('-v', '--verbose',
+                        action='count',
+                        default=0,
+                        help='Increase output sent to stderr')
+
+    try:
+        version = pkg_resources.get_distribution(FAMILY_NAME).version
+    except pkg_resources.DistributionNotFound:
+        version = 'UNKNOWN'
+
+    parser.add_argument(
+        '-V', '--version',
+        action='version',
+        version=(FAMILY_NAME + ' (Hyperledger Sawtooth) version {}')
+        .format(version),
+        help='print version information')
+
+    return parser.parse_args(args)
+
+
+def main(args=None):
     '''Entry-point function for the carLogger transaction walletprocessor.'''
     setup_loggers()
+    if args is None:
+        args = sys.argv[1:]
+    opts = parse_args(args)
     try:
         # Register the transaction handler and start it.
-        processor = TransactionProcessor(url='tcp://validator:4004')
+        processor = TransactionProcessor(url=opts.connect)
 
         handler = CarLoggerTransactionHandler(sw_namespace)
 
