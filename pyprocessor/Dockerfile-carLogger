@@ -33,4 +33,4 @@ EXPOSE 4004/tcp
 WORKDIR /project/carLogger/pyprocessor
 ENV PATH "$PATH:/project/carLogger/pyprocessor"
 
-CMD bash -c './carLogger-tp'
+CMD bash -c './carLogger-tp -C tcp://validator-0:4004'

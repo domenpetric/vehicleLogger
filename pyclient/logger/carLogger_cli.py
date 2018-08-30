@@ -33,7 +33,7 @@ from logger.carLogger_client import CarLoggerClient
 
 DISTRIBUTION_NAME = 'carLogger'
 
-DEFAULT_URL = 'http://sawtooth-rest-api-1:8008'
+DEFAULT_URL = 'http://sawtooth-rest-api-0:8008'
 
 def create_console_handler(verbose_level):
     clog = logging.StreamHandler()
@@ -225,29 +225,29 @@ def do_create(args):
     '''Implements the "create" subcommand by calling the client class.'''
     keyfile = _get_keyfile('jack')
     print("Private key: {}".format(keyfile))
-    #keyfile = args.private_key
+    company = args.private_key
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.create(VIN, keyfile, args.work_date, args.brand , args.model,  args.description)
+    response = client.create(VIN, company, args.work_date, args.brand , args.model,  args.description)
     print("Response: {}".format(response))
 
 def do_add(args):
     '''Implements the "add" subcommand by calling the client class.'''
-    #keyfile = args.private_key
+    company = args.private_key
     keyfile = _get_keyfile('jack')
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.add(VIN , keyfile , args.work_date , args.work , args.km_status , args.description)
+    response = client.add(VIN , company , args.work_date , args.work , args.km_status , args.description)
 
     print("Response: {}".format(response))
 
 def do_delete(args):
     '''Implements the "add" subcommand by calling the client class.'''
-    #keyfile = args.private_key
+    company = args.private_key
     keyfile = _get_keyfile('jack')
     VIN = args.VIN
     client = CarLoggerClient(baseUrl=DEFAULT_URL, private_key=keyfile, vin=VIN)
-    response = client.delete(VIN , keyfile , args.work_date , args.work , args.km_status , args.description)
+    response = client.delete(VIN , company , args.work_date , args.work , args.km_status , args.description)
 
     print("Response: {}".format(response))
 

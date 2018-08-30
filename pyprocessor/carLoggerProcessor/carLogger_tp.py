@@ -8,6 +8,7 @@ import logging
 import time
 import sys
 import argparse
+import json
 import pkg_resources
 
 from sawtooth_signing import create_context
@@ -28,6 +29,18 @@ def _hash(data):
 
 # Prefix for carLogger is the first six hex digits of SHA-512(TF name).
 sw_namespace = _hash(FAMILY_NAME.encode('utf-8'))[0:6]
+
+class VehicleLog:
+    def __init__(self, VIN, worker, work_date, work='', brand='', model='', description='', mileage=0, timestamp=''):
+        self.VIN = VIN
+        self.worker = worker
+        self.work_date = work_date
+        self.work = work
+        self.brand = brand
+        self.model = model
+        self.description = description
+        self.mileage = mileage
+        self.timestamp = timestamp
 
 class CarLoggerTransactionHandler(TransactionHandler):
     '''                                                       
@@ -57,105 +70,108 @@ class CarLoggerTransactionHandler(TransactionHandler):
                                                               
            This function does most of the work for this class by processing
            a single transaction for the carLogger transaction family.
-        '''                                                   
-        
+        '''
+        LOGGER.debug("start" )
         # Get the payload and extract carLogger-specific information.
         header = transaction.header
+        from_key = header.signer_public_key
         payload_list = transaction.payload.decode().split(",")
         operation = payload_list[0]
         VIN = payload_list[1]
         private_key = payload_list[2]
-
-        # Get the public key sent from the client.
-        from_key = header.signer_public_key
-        company = from_key
-
+        work_date = payload_list[3]
+        company = self.getPublicKey(private_key)
+        LOGGER.info("create lo  " )
+        log = VehicleLog(VIN=VIN, worker=company, work_date=work_date)
         # Perform the operation.
         LOGGER.info("Operation = "+ operation)
         if operation == "add":
-            work_date = payload_list[3]
             work = payload_list[4]
             km_status = payload_list[5]
             description = payload_list[6]
-            self._add(context, VIN, company, work_date,work,km_status,description)
+            log.work = work
+            log.mileage = km_status
+            log.description = description
+            log.timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
+            self._add(context, log)
         elif operation == "delete":
-            work_date = payload_list[3]
             work = payload_list[4]
             km_status = payload_list[5]
-            deleted_work=''
             description = payload_list[6]
+            log.mileage = km_status
+            log.description = description
+            log.timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
+            deleted_work=''
             for number in work.split("|"):
                 deleted_work = deleted_work + str(-1*int(number))
-            work = deleted_work
-            self._delete(context, VIN, company, work_date, work, km_status,description)
+            log.work = deleted_work
+            self._delete(context, log)
         elif operation == "create":
-            work_date = payload_list[3]
             brand = payload_list[4]
             model = payload_list[5]
             description = payload_list[6]
-            self._create(context, VIN, company, work_date, brand, model,description)
+            log.mileage = 0
+            log.work = '0'
+            log.description = description
+            log.brand = brand
+            log.model = model
+            log.timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
+            self._create(context,log)
         else:
             LOGGER.info("Unhandled action. Operation should be add, delete, create or history")
 
-    def _add(self, context, VIN, company, work_date,work,km_status, description):
-        wallet_address = self._get_wallet_address(VIN)
+    def _add(self, context, log):
+        wallet_address = self._get_wallet_address(log.VIN)
         # wallet_address = self._get_wallet_address(company)
-        LOGGER.info('Got the serial number {} and the wallet address {} '.format(VIN, wallet_address))
+        LOGGER.info('Got the serial number {} and the wallet address {} '.format(log.VIN, wallet_address))
         current_entry = context.get_state([wallet_address])
-        timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
-        new_entry = VIN + ';' + company + ';' + work_date + ';' + work + ';' + str(km_status) + ';' + description + ';' + timestamp
+        new_entry = json.dumps(log.__dict__, indent=4)
         LOGGER.info('Current entry{}'.format(current_entry))
         if current_entry == []:
-            LOGGER.info('Serial number {} does not exist yet'.format(VIN))
+            LOGGER.info('Serial number {} does not exist yet'.format(log.VIN))
         else:
             state_data = str(new_entry).encode('utf-8')
             addresses = context.set_state({wallet_address: state_data})
             if len(addresses) < 1:
                 raise InternalError("State Error")
 
-    def _delete(self, context, VIN, company, work_date,work,km_status,description):
-        wallet_address = self._get_wallet_address(VIN)
+    def _delete(self, context, log):
+        wallet_address = self._get_wallet_address(log.VIN)
         # wallet_address = self._get_wallet_address(company)
-        LOGGER.info('Got the serial number {} and the wallet address {} '.format(VIN, wallet_address))
+        LOGGER.info('Got the serial number {} and the wallet address {} '.format(log.VIN, wallet_address))
         current_entry = context.get_state([wallet_address])
-        timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
-        new_entry = VIN + ';' + company + ';' + work_date + ';' + work + ';' + str(km_status) + ';' + description + ';' + timestamp
+        new_entry = json.dumps(log.__dict__, indent=4)
         LOGGER.info('Current entry{}'.format(current_entry))
         if current_entry == []:
-            LOGGER.info('Serial number {} does not exist yet'.format(VIN))
+            LOGGER.info('Serial number {} does not exist yet'.format(log.VIN))
         else:
             state_data = str(new_entry).encode('utf-8')
             addresses = context.set_state({wallet_address: state_data})
             if len(addresses) < 1:
                 raise InternalError("State Error")
 
-    def _create(self, context, VIN, company, work_date, brand, model,description):
-        wallet_address = self._get_wallet_address(VIN)
-        # wallet_address = self._get_wallet_address(company)
-        LOGGER.info('Got the serial number {} and the wallet address {} '.format(VIN, wallet_address))
-        # current_entry = context.get_state([wallet_address])
-        timestamp = str(time.strftime("%Y-%m-%d %H:%M"))
-        new_entry = VIN + ';' + company+';' + work_date + ';0;0;' + brand + ';' + model + ';' + description + ';' + timestamp
-        # LOGGER.info('Current entry{}'.format(current_entry))
-        # if current_entry != []:
-        #     LOGGER.info('Serial number {} already in use. Try to add data or get different serial number'.format(VIN))
-        #     raise InternalError('Serial number {} already in use. Try to add data or get different serial number'.format(VIN))
-        #else:
-        state_data = str(new_entry).encode('utf-8')
-        addresses = context.set_state({wallet_address: state_data})
-        if len(addresses) < 1:
-            raise InternalError("State Error")
+    def _create(self, context, log):
+        wallet_address = self._get_wallet_address(log.VIN)
+        LOGGER.info('Got the serial number {} and the wallet address {} '.format(log.VIN, wallet_address))
+        current_entry = context.get_state([wallet_address])
+        new_entry = json.dumps(log.__dict__, indent=4)
+        LOGGER.info('Current entry{}'.format(current_entry))
+        if current_entry != []:
+             LOGGER.info('Serial number {} already in use. Try to add data or get different serial number'.format(log.VIN))
+        else:
+            state_data = str(new_entry).encode('utf-8')
+            addresses = context.set_state({wallet_address: state_data})
+            if len(addresses) < 1:
+                raise InternalError("State Error")
 
 
     def _get_wallet_address(self, from_key):
         return _hash(FAMILY_NAME.encode('utf-8'))[0:6] + _hash(from_key.encode('utf-8'))[0:64]
 
-
     def getPublicKey(self, from_key):
         context = create_context('secp256k1')
         public_key = context.get_public_key(from_key)
         return public_key
-
 
 def setup_loggers():
     logging.basicConfig()
@@ -209,7 +225,12 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     except SystemExit as err:
+        LOGGER.info(err)
         raise err
     except BaseException as err:
+        LOGGER.info(err)
         traceback.print_exc(file=sys.stderr)
         sys.exit(1)
+    except Exception as err:
+        LOGGER.info(err)
+
